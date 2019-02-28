@@ -47,8 +47,15 @@ public class Main {
             else
                 break;
         }while (true);
+        do {
+            Slide next = nextSlide(h,show.firstSlide());
+            if(next!=null)
+                show.addFront(next);
+            else
+                break;
+        }while (true);
 
-        show.show();
+        System.out.println(show.points());
 
     }
 }

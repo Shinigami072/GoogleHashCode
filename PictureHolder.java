@@ -14,7 +14,7 @@ public class PictureHolder {
         ArrayList<Image> pictures = new ArrayList<>();
         BufferedReader in = new BufferedReader(new FileReader(path));
         int i = Integer.parseInt(in.readLine());
-        int id=1;
+        int id=0;
         while(i>0){
             i--;
             String[] line =in.readLine().split(" ");
@@ -49,7 +49,7 @@ public class PictureHolder {
     public int getCount(String tag){
         int count =0;
         for (Image img:mTags.get(tag)) {
-            if(!img.isUsed)
+            if(!img.isUsed && !img.isVertical)
                 count++;
         }
         return count;
@@ -81,7 +81,5 @@ public class PictureHolder {
         }
         return i;
     }
-
-
 
 }

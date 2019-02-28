@@ -18,10 +18,19 @@ public class Slideshow {
         return slideShow.get(slideShow.size()-1);
     }
 
-    public void show() {
-        for (Slide s:slideShow) {
-            System.out.println(s.images.get(0).idInFile);
-        }
+    public long points(){
+        long p=0;
+        for(int i=0;i<slideShow.size()-1;i++)
+            p+=TagsComparator.imageCompare(slideShow.get(i).sumOfTags,slideShow.get(i+1).sumOfTags);
+        return p;
+    }
+
+    public Slide firstSlide() {
+        return slideShow.get(0);
+    }
+
+    public void addFront(Slide next) {
+        slideShow.add(0,next);
     }
 
 //    public void show(){
