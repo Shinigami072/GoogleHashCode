@@ -21,7 +21,7 @@ public class PictureHolder {
             boolean isHorizontal = line[0].equals("H");
 
             int tagC = Integer.parseInt(line[1]);
-            Set<String> tags= Set.of(Arrays.copyOfRange(line,2,tagC-2));
+            Set<String> tags= Set.of(Arrays.copyOfRange(line,2,2+tagC));
             pictures.add(new Image(tags,!isHorizontal,id));
             id++;
 
@@ -54,6 +54,34 @@ public class PictureHolder {
         }
         return count;
     }
+    public Set<Image> getLSet(){
+        int m_Count =-1;
+        Set<Image> s = null;
+        for(String tag:mTags.keySet()){
+            int c = getCount(tag);
+            if(c>m_Count)
+            {
+                m_Count=c;
+                s=get(tag);
+            }
+        }
+
+        return  s;
+    }
+
+    public static Image getMaxTags(Set<Image> images){
+        Image i=null;
+        int c =-1;
+        for (Image img:images) {
+            if(!img.isUsed)
+            if(img.tags.size()>c){
+                c=img.tags.size();
+                i=img;
+            }
+        }
+        return i;
+    }
+
 
 
 }
