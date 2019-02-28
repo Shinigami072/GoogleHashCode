@@ -6,7 +6,7 @@ import java.util.*;
 
 public class PictureHolder {
 
-    Collection<Image> mImages;
+    ArrayList<Image> mImages;
     Map<String, Set<Image>> mTags;
 
 
@@ -28,7 +28,7 @@ public class PictureHolder {
         }
         return new PictureHolder(pictures);
     }
-    public PictureHolder(Collection<Image> images) {
+    public PictureHolder(ArrayList<Image> images) {
         mTags = new HashMap<>();
         mImages = images;
         initTags();
@@ -81,5 +81,14 @@ public class PictureHolder {
         }
         return i;
     }
+    Random random = new Random();
 
+    public Image getRVI() {
+      Image m;
+
+      do{
+          m=mImages.get(random.nextInt(mImages.size()));
+      }while (m!=null && !m.isUsed && m.isVertical);
+      return m;
+    }
 }

@@ -10,22 +10,39 @@ public class Main {
         for(String tag:current.sumOfTags)
             tags.addAll(hodler.get(tag));
 
-        Image im = null;
+        Slide s = null;
         int c = 0;
         for(Image img:tags){
-            if(!img.isUsed && !img.isVertical)
+            if(!img.isUsed)
             {
-                int t =TagsComparator.imageCompare(current.sumOfTags,img.tags);
+                int t =0;
+                Image img2 = null;
+                if(!img.isVertical){
+                    t=TagsComparator.imageCompare(current.sumOfTags,img.tags);
+                }else{
+                    Set<String> sum_tags=new HashSet<>();
+                    img2=hodler.getRVI();
+                    sum_tags.addAll(img.tags);
+                    sum_tags.addAll(img2.tags);
+                    t=TagsComparator.imageCompare(current.sumOfTags,img.tags);
+                }
+
                 if(c<t)
                 {
-                    im = img;
+
+                    if(img2 ==null){
+                        s = new Slide(img);
+                    }
+                    else{
+                        s = new Slide(img,img2);
+                    }
                     c=t;
                 }
             }
         }
-        if(im!=null) {
-            im.isUsed = true;
-            return new Slide(im);
+        if(s!=null) {
+            s.setUsed();
+            return s;
         }
         else
             return null;

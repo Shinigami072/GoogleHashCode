@@ -29,4 +29,10 @@ public  class Slide {
         newSum.addAll(img2.tags);
         return newSum;
     }
+
+    public void setUsed() {
+        for (int i = 0; i < images.size(); i++) {
+            images.get(i).isUsed=true;
+        }
+    }
 }
