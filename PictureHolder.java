@@ -83,12 +83,13 @@ public class PictureHolder {
     }
     Random random = new Random();
 
-    public Image getRVI() {
+    public Image getRVI(int id) {
       Image m;
 
       do{
           m=mImages.get(random.nextInt(mImages.size()));
-      }while (m!=null && !m.isUsed && m.isVertical);
+      }while (!(m!=null && m.idInFile != id&& !m.isUsed && m.isVertical));
+
       return m;
     }
 }

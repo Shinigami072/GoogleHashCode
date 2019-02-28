@@ -21,7 +21,8 @@ public class Main {
                     t=TagsComparator.imageCompare(current.sumOfTags,img.tags);
                 }else{
                     Set<String> sum_tags=new HashSet<>();
-                    img2=hodler.getRVI();
+                    img2=hodler.getRVI(img.idInFile);
+
                     sum_tags.addAll(img.tags);
                     sum_tags.addAll(img2.tags);
                     t=TagsComparator.imageCompare(current.sumOfTags,img.tags);
