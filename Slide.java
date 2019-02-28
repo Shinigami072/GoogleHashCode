@@ -16,7 +16,11 @@ public  class Slide {
         this.images.add(img2);
 
         sumOfTags = tagsSumator(img1, img2);
-
+    }
+    
+     public Slide(Image img1){
+        this.images.add(img1);
+        sumOfTags = img1.tags;
     }
 
     public Set<String> tagsSumator(Image img1, Image img2){
