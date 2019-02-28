@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Main {
 
-    Slide nextSlide(PictureHolder hodler,Slide current){
+    static Slide nextSlide(PictureHolder hodler,Slide current){
         Set<Image> tags = new HashSet<>();
         for(String tag:current.sumOfTags)
             tags.addAll(hodler.get(tag));
@@ -23,8 +23,12 @@ public class Main {
                 }
             }
         }
-        im.isUsed=true;
-        return new Slide(im);
+        if(im!=null) {
+            im.isUsed = true;
+            return new Slide(im);
+        }
+        else
+            return null;
     }
 
     public static void main(String... args) throws IOException {
@@ -36,8 +40,15 @@ public class Main {
         Slide start = new Slide(i);
         Slideshow show = new Slideshow(new ArrayList());
         show.add(start);
-        show.lastSlide();
+        do {
+            Slide next = nextSlide(h,show.lastSlide());
+            if(next!=null)
+                show.add(next);
+            else
+                break;
+        }while (true);
 
+        show.show();
 
     }
 }

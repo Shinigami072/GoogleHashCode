@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public  class Slide {
-    ArrayList<Image> images=null;
+    ArrayList<Image> images=new ArrayList<>();
     Set<String> sumOfTags = new HashSet<>();
 
     public Slide(ArrayList<Image> images, Set<String> sumOfTags) {

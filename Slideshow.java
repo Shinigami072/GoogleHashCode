@@ -18,6 +18,12 @@ public class Slideshow {
         return slideShow.get(slideShow.size()-1);
     }
 
+    public void show() {
+        for (Slide s:slideShow) {
+            System.out.println(s.images.get(0).idInFile);
+        }
+    }
+
 //    public void show(){
 //        System.out.println(numberOfSlides);
 //        for (Slide s:slideShow) {

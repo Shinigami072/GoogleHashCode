@@ -73,7 +73,7 @@ public class PictureHolder {
         Image i=null;
         int c =-1;
         for (Image img:images) {
-            if(!img.isUsed)
+            if(!img.isUsed&&!img.isVertical)
             if(img.tags.size()>c){
                 c=img.tags.size();
                 i=img;
