@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Slideshow {
@@ -28,5 +31,19 @@ public class Slideshow {
             }
         }
     }
+
+
+    public void submissionFile(Slideshow slideshow) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        for (int i = 0; i < slideshow.numberOfSlides; i++) {
+            for (int j = 0; j < slideshow.slideShow.get(i).images.size(); j++) {
+                writer.write(slideshow.slideShow.get(i).images.get(j).idInFile);
+                writer.write(" ");
+            }
+            writer.write("\n");
+        }
+        writer.close();
+    }
+
 
 }
