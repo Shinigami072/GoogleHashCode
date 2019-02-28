@@ -37,13 +37,13 @@ public class Slideshow {
     }
 
 
-    public void submissionFile(Slideshow slideshow) throws IOException {
+    public static void submissionFile(Slideshow slideshow,String fileName) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-        writer.write(slideshow.numberOfSlides);
+        writer.write(String.valueOf(slideshow.slideShow.size()));
         writer.write("\n");
-        for (int i = 0; i < slideshow.numberOfSlides; i++) {
+        for (int i = 0; i < slideshow.slideShow.size(); i++) {
             for (int j = 0; j < slideshow.slideShow.get(i).images.size(); j++) {
-                writer.write(slideshow.slideShow.get(i).images.get(j).idInFile);
+                writer.write(String.valueOf(slideshow.slideShow.get(i).images.get(j).idInFile));
                 writer.write(" ");
             }
             writer.write("\n");

@@ -12,6 +12,9 @@ public  class Slide {
     }
 
     public Slide(Image img1, Image img2){
+        assert(img1.isVertical&&img2.isVertical);
+        assert(!img1.isUsed&&!img2.isUsed);
+
         this.images.add(img1);
         this.images.add(img2);
 
@@ -19,6 +22,8 @@ public  class Slide {
     }
     
      public Slide(Image img1){
+         assert(!img1.isVertical);
+         assert(!img1.isUsed);
         this.images.add(img1);
         sumOfTags = img1.tags;
     }

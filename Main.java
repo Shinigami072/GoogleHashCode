@@ -73,6 +73,7 @@ public class Main {
         }while (true);
 
         System.out.println(show.points());
+        Slideshow.submissionFile(show,"out.txt");
 
     }
 }
