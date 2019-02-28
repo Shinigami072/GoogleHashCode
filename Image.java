@@ -1,19 +1,17 @@
-import java.util.ArrayList;
+import java.util.Set;
 
 public class Image {
-    ArrayList<String> tags;
+    Set<String> tags;
     int numberOfTags;
-    boolean sizeOfImage;
     boolean isVertical;
     int idInFile;
     boolean isUsed;
 
-    public Image(ArrayList<String> tags, int numberOfTags, boolean sizeOfImage, boolean isVertical, int idInFile, boolean isUsed) {
+    public Image(Set<String> tags, boolean isVertical, int idInFile) {
         this.tags = tags;
-        this.numberOfTags = numberOfTags;
-        this.sizeOfImage = sizeOfImage;
+        this.numberOfTags = tags.size();
         this.isVertical = isVertical;
         this.idInFile = idInFile;
-        this.isUsed = isUsed;
+        this.isUsed = false;
     }
 }

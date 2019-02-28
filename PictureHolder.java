@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class PictureHolder {
@@ -6,6 +10,24 @@ public class PictureHolder {
     Map<String, Set<Image>> mTags;
 
 
+    public static PictureHolder make_Holder(String path) throws IOException {
+        ArrayList<Image> pictures = new ArrayList<>();
+        BufferedReader in = new BufferedReader(new FileReader(path));
+        int i = Integer.parseInt(in.readLine());
+        int id=1;
+        while(i>0){
+            i--;
+            String[] line =in.readLine().split(" ");
+            boolean isHorizontal = line[0].equals("H");
+
+            int tagC = Integer.parseInt(line[1]);
+            Set<String> tags= Set.of(Arrays.copyOfRange(line,2,tagC-2));
+            pictures.add(new Image(tags,!isHorizontal,id));
+            id++;
+
+        }
+        return new PictureHolder(pictures);
+    }
     public PictureHolder(Collection<Image> images) {
         mTags = new HashMap<>();
         mImages = images;
