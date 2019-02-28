@@ -13,8 +13,19 @@ public class Slideshow {
 
     public void show(){
         System.out.println(numberOfSlides);
-        for (Slide:slideShow) {
-            System.out.println(Slide.);
+        for (Slide s:slideShow) {
+            if(s.images.get(0).isVertical){
+                System.out.print("V"+" ");
+            }
+            else{
+                System.out.print("H"+" ");
+            }
+            System.out.print(s.sumOfTags+" ");
+            for (int i = 0; i < s.images.size(); i++) {
+                for (int j = 0; j < s.images.get(i).tags.size(); j++) {
+                    System.out.print(s.images.get(i).tags.get(j) + " ");
+                }
+            }
         }
     }
 
