@@ -11,7 +11,8 @@ public class TagsComparator {
         this.in2NotIn1 = in2NotIn1;
     }
 
-     public int imageCompare(Image img1, Image img2){
+    
+    public int imageCompare(Image img1, Image img2){
         Set<String> tags1 = img1.tags;
         Set<String> tags2 = img2.tags;
         sameTags = new HashSet<>();
@@ -25,14 +26,23 @@ public class TagsComparator {
         in2NotIn1 = new HashSet<>();
         in2NotIn1.addAll(tags2);
         in2NotIn1.removeAll(tags1);
+        
+        int score = minimumScore(sameTags,in1NotIn2,in2NotIn1);
+        
+        return score;
 
     }
 
     public int minimumScore(Set<String> sameTags, Set<String> in1NotIn2, Set<String> in2NotIn1){
-        List<Integer> listOfScores = new ArrayList<>(sameTags.size(), in1NotIn2.size(), in2NotIn1.size());
+        List<Integer> listOfScores = new ArrayList<Integer>();
+        listOfScores.add(sameTags.size());
+        listOfScores.add(in1NotIn2.size());
+        listOfScores.add(in2NotIn1.size());
+        
         int score = Collections.min(listOfScores);
         return score;
     }
+
 
 
 }
