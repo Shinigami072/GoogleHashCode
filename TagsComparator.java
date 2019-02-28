@@ -11,7 +11,9 @@ public class TagsComparator {
         this.in2NotIn1 = in2NotIn1;
     }
 
-    public int imageCompare(Set<String> tags1, Set<String> tags2){
+     public int imageCompare(Image img1, Image img2){
+        Set<String> tags1 = img1.tags;
+        Set<String> tags2 = img2.tags;
         sameTags = new HashSet<>();
         sameTags.addAll(tags1);
         sameTags.retainAll(tags2);
