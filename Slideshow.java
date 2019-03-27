@@ -1,55 +1,77 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Slideshow {
 
-    int numberOfSlides;
-    ArrayList<Slide> slideShow;
+    LinkedList<Slide> slideShow = new LinkedList<>();
 
-    public Slideshow (ArrayList slideShow)
-    {
-        this.numberOfSlides=slideShow.size();
-        this.slideShow=slideShow;
-    }
-    public void add(Slide s){
-        slideShow.add(s);
+    interface Builder{
+        Slide nextSlide(PictureHolder hodler, Set<String> tags);
     }
 
-    public Slide lastSlide() {
-        return slideShow.get(slideShow.size()-1);
+
+    private Slideshow() {
     }
 
-    public long points(){
-        long p=0;
-        for(int i=0;i<slideShow.size()-1;i++)
-            p+=TagsComparator.imageCompare(slideShow.get(i).sumOfTags,slideShow.get(i+1).sumOfTags);
+    public static Slideshow make_show(PictureHolder holder){
+        return make_show(holder,new SlideshowUtils.BuilderSimple());
+    }
+
+    public static Slideshow make_show(PictureHolder holder,Builder b) {
+        Slideshow sh = new Slideshow();
+
+        Slide start = b.nextSlide(holder, holder.most_common);
+        sh.addLast(start);
+
+        //front
+        do {
+            Slide next = b.nextSlide(holder, sh.last().getSumOfTags());
+            System.out.print("\rslide:" + sh.size());
+            if (next != null)
+                sh.addLast(next);
+            else
+                break;
+        } while (true);
+        System.out.println();
+
+        //back
+        do {
+            Slide next = b.nextSlide(holder, sh.first().getSumOfTags());
+            System.out.print("\rslide:" + sh.size());
+            if (next != null)
+                sh.addFirst(next);
+            else
+                break;
+        } while (true);
+
+        System.out.println();
+        return sh;
+    }
+
+    private int size() {
+        return slideShow.size();
+    }
+
+    public long points() {
+        long p = 0;
+        for (int i = 0; i < slideShow.size() - 1; i++)
+            p += TagsComparator.imageCompare(slideShow.get(i).getSumOfTags(), slideShow.get(i + 1).getSumOfTags());
         return p;
     }
 
-    public Slide firstSlide() {
-        return slideShow.get(0);
+    public void addLast(Slide s) {
+        slideShow.addLast(s);
     }
 
-    public void addFront(Slide next) {
-        slideShow.add(0,next);
+    public Slide last() {
+        return slideShow.getLast();
     }
 
+    public void addFirst(Slide next) {
 
-    public static void submissionFile(Slideshow slideshow,String fileName) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-        writer.write(String.valueOf(slideshow.slideShow.size()));
-        writer.write("\n");
-        for (int i = 0; i < slideshow.slideShow.size(); i++) {
-            for (int j = 0; j < slideshow.slideShow.get(i).images.size(); j++) {
-                writer.write(String.valueOf(slideshow.slideShow.get(i).images.get(j).idInFile));
-                writer.write(" ");
-            }
-            writer.write("\n");
-        }
-        writer.close();
+        slideShow.addFirst(next);
     }
 
-
+    public Slide first() {
+        return slideShow.getFirst();
+    }
 }

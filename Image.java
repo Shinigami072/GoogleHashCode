@@ -1,6 +1,6 @@
 import java.util.Set;
 
-public class Image {
+public class Image implements Comparable<Image>{
     Set<String> tags;
     int numberOfTags;
     boolean isVertical;
@@ -13,5 +13,19 @@ public class Image {
         this.isVertical = isVertical;
         this.idInFile = idInFile;
         this.isUsed = false;
+    }
+
+    @Override
+    public String toString() {
+        return idInFile+(isVertical?"V":"H" )+ (isUsed?"U":"N");
+    }
+
+    @Override
+    public int compareTo(Image o) {
+        int i = numberOfTags-o.numberOfTags;
+        if(i!=0)
+            return i;
+        else
+            return idInFile-o.idInFile;
     }
 }
