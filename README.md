@@ -10,6 +10,8 @@ Full description of the task in photo_slideshow.pdf file
 
 This solution took 153th place in the world.
 
+[later imporvements branch](https://github.com/Shinigami072/GoogleHashCode/tree/new-and-imporved)
+
 other tem members:
 + [@annagi98](http://github.com/annagi98)
 + [@jbinek](http://github.com/jbinek)
